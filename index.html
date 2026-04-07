@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>200 Free Random Websites</title>
+  <title>300 Free Websites Vault</title>
   <style>
     :root {
       --bg: #f8f4ec;
@@ -13,7 +13,24 @@
       --line: #e8decd;
       --accent: #7c5c2e;
       --accent-soft: #efe4d1;
+      --header-bg: linear-gradient(180deg, #fff8ee 0%, #f6efe1 100%);
+      --input-bg: #fff;
       --shadow: 0 10px 30px rgba(60, 41, 12, 0.08);
+      --shadow-hover: 0 14px 32px rgba(60, 41, 12, 0.12);
+    }
+
+    body.dark {
+      --bg: #16120f;
+      --card: #211a16;
+      --text: #f3eadf;
+      --muted: #c4b7a7;
+      --line: #3a2f28;
+      --accent: #d8b37a;
+      --accent-soft: #2a221d;
+      --header-bg: linear-gradient(180deg, rgba(35,28,23,.96) 0%, rgba(25,20,17,.96) 100%);
+      --input-bg: #1a1512;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.38);
     }
 
     * { box-sizing: border-box; }
@@ -33,12 +50,16 @@
     }
 
     header {
-      background: linear-gradient(180deg, #fff8ee 0%, #f6efe1 100%);
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      background: var(--header-bg);
       border: 1px solid var(--line);
       border-radius: 24px;
-      padding: 28px;
+      padding: 22px 24px;
       box-shadow: var(--shadow);
       margin-bottom: 24px;
+      backdrop-filter: blur(14px);
     }
 
     h1 {
@@ -66,10 +87,35 @@
       padding: 13px 14px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background: #fff;
+      background: var(--input-bg);
       color: var(--text);
       font-size: 0.95rem;
       outline: none;
+    }
+
+
+    .toolbar-right {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
     }
 
     .stats {
@@ -123,7 +169,7 @@
 
     .card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 32px rgba(60, 41, 12, 0.12);
+      box-shadow: var(--shadow-hover);
     }
 
     .topline {
@@ -142,7 +188,7 @@
 
     .tag {
       font-size: 0.74rem;
-      background: #f3eadc;
+      background: var(--accent-soft);
       color: var(--accent);
       padding: 5px 8px;
       border-radius: 999px;
@@ -180,28 +226,33 @@
     @media (max-width: 980px) {
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .toolbar { grid-template-columns: 1fr; }
+      .toolbar-right { grid-template-columns: 1fr auto; }
     }
 
     @media (max-width: 640px) {
       .grid { grid-template-columns: 1fr; }
-      header { padding: 20px; }
+      header { padding: 18px; top: 8px; }
       .wrap { padding: 18px 12px 50px; }
       h1 { font-size: 1.6rem; }
+      .toolbar-right { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>200 Free Random Websites</h1>
+      <h1>300 Free Websites Vault</h1>
       <p class="sub">A personal vault of direct-use websites you can open and immediately do something with. Search by name, use, or category. Most are free to access, and many are useful for content ideas too.</p>
       <div class="toolbar">
         <input id="search" type="text" placeholder="Search sites, tools, categories, uses..." />
-        <select id="categoryFilter">
-          <option value="all">All categories</option>
-        </select>
+        <div class="toolbar-right">
+          <select id="categoryFilter">
+            <option value="all">All categories</option>
+          </select>
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙 Dark</button>
+        </div>
       </div>
-      <p class="stats"><span id="visibleCount">200</span> sites showing</p>
+      <p class="stats"><span id="visibleCount">300</span> sites showing</p>
     </header>
 
     <main id="siteContainer"></main>
@@ -246,7 +297,7 @@
       { category: 'History & Geography', name: 'ORBIS', url: 'https://orbis.stanford.edu/', tag: 'Ancient Rome', desc: 'Interactive map showing travel in the Roman world.' },
       { category: 'History & Geography', name: 'GeaCron', url: 'https://geacron.com/home-en/', tag: 'Historic Map', desc: 'Watch borders and empires change over time on a map.' },
       { category: 'History & Geography', name: 'MapCrunch', url: 'https://www.mapcrunch.com/', tag: 'Random Map', desc: 'Teleport to random places using Street View.' },
-      { category: 'History & Geography', name: 'GeoGuessr Free Map Games', url: 'https://www.geoguessr.com/', tag: 'Geography', desc: 'Guess locations from visual clues and explore the world.' },
+      { category: 'History & Geography', name: 'City Guesser', url: 'https://virtualvacation.us/guess', tag: 'Geography', desc: 'Guess locations from real walking videos instead of Street View.' },
       { category: 'History & Geography', name: 'Flagle', url: 'https://www.flagle.io/', tag: 'Game', desc: 'Guess the country from pieces of its flag.' },
       { category: 'History & Geography', name: 'TimeMaps', url: 'https://timemaps.com/', tag: 'Timeline', desc: 'Browse world history through interactive timelines and maps.' },
       { category: 'History & Geography', name: 'The Pudding', url: 'https://pudding.cool/', tag: 'Visual Essays', desc: 'Data-driven interactive stories on culture and society.' },
@@ -295,7 +346,7 @@
       { category: 'Health & Wellness', name: 'Mayo Clinic Symptoms', url: 'https://www.mayoclinic.org/symptoms', tag: 'Reference', desc: 'Browse medical symptoms and general health information.' },
       { category: 'Health & Wellness', name: 'CDC Physical Activity', url: 'https://www.cdc.gov/physicalactivity/', tag: 'Health', desc: 'Guidelines and activity ideas from the CDC.' },
       { category: 'Health & Wellness', name: 'Yoga with Adriene', url: 'https://yogawithadriene.com/', tag: 'Yoga', desc: 'Free yoga practices and routines for different needs.' },
-      { category: 'Health & Wellness', name: 'Down Dog Yoga Intro', url: 'https://www.downdogapp.com/web', tag: 'Yoga', desc: 'Browser-based yoga flow tool with customizable practice.' },
+      { category: 'Health & Wellness', name: 'DoYogaWithMe', url: 'https://www.doyogawithme.com/', tag: 'Yoga', desc: 'Free yoga classes and guided practices for different levels.' },
 
       { category: 'Creative & Art', name: 'Photopea', url: 'https://www.photopea.com/', tag: 'Image Edit', desc: 'A strong browser-based Photoshop alternative.' },
       { category: 'Creative & Art', name: 'Pixlr E', url: 'https://pixlr.com/e/', tag: 'Image Edit', desc: 'Free online image editor for quick design work.' },
@@ -318,9 +369,9 @@
       { category: 'Creative & Art', name: 'Adobe Color', url: 'https://color.adobe.com/', tag: 'Color', desc: 'Build color harmonies and explore public palettes.' },
       { category: 'Creative & Art', name: 'Artvee', url: 'https://artvee.com/', tag: 'Art Library', desc: 'Free high-resolution classic art downloads.' },
 
-      { category: 'Writing & Reading', name: '750 Words', url: 'https://750words.com/', tag: 'Writing', desc: 'A simple daily writing space for thinking on paper.' },
+      { category: 'Writing & Reading', name: 'Calmly Writer', url: 'https://www.calmlywriter.com/online/', tag: 'Writing', desc: 'A clean distraction-free writing space you can use instantly.' },
       { category: 'Writing & Reading', name: 'Hemingway Editor', url: 'https://hemingwayapp.com/', tag: 'Writing Tool', desc: 'Makes your writing clearer by flagging dense sentences.' },
-      { category: 'Writing & Reading', name: 'Reedsy Book Editor', url: 'https://reedsy.com/write-a-book', tag: 'Writing', desc: 'Free writing editor built for drafting books and long texts.' },
+      { category: 'Writing & Reading', name: 'ZenPen', url: 'https://zenpen.io/', tag: 'Writing', desc: 'Minimal online writing editor for focused drafting with no clutter.' },
       { category: 'Writing & Reading', name: 'Writer’s Dictionary', url: 'https://www.onelook.com/', tag: 'Word Tool', desc: 'Find words by meaning, pattern, and association.' },
       { category: 'Writing & Reading', name: 'Power Thesaurus', url: 'https://www.powerthesaurus.org/', tag: 'Words', desc: 'Crowdsourced thesaurus for synonyms and antonyms.' },
       { category: 'Writing & Reading', name: 'RhymeZone', url: 'https://www.rhymezone.com/', tag: 'Words', desc: 'Rhymes, related words, and poetic language tools.' },
@@ -398,7 +449,7 @@
       { category: 'Maps, Travel & Exploration', name: 'Liveuamap', url: 'https://liveuamap.com/', tag: 'World Events', desc: 'Map-style view of major current events and incidents.' },
       { category: 'Maps, Travel & Exploration', name: 'Roadtrippers', url: 'https://roadtrippers.com/', tag: 'Trip Plan', desc: 'Explore roadside attractions and trip route ideas.' },
       { category: 'Maps, Travel & Exploration', name: 'Atlas of Wonders', url: 'https://www.atlasofwonders.com/', tag: 'Film Locations', desc: 'Find filming locations and scenic real-world spots.' },
-      { category: 'Maps, Travel & Exploration', name: 'Nomad List Free Browse', url: 'https://nomadlist.com/', tag: 'Cities', desc: 'Browse cities and compare remote-living style info.' },
+      { category: 'Maps, Travel & Exploration', name: 'Numbeo Cost of Living', url: 'https://www.numbeo.com/cost-of-living/', tag: 'Cities', desc: 'Compare living costs, rent, and safety data across cities.' },
       { category: 'Maps, Travel & Exploration', name: 'Suncalc', url: 'https://www.suncalc.org/', tag: 'Sun/Moon', desc: 'See sun position, sunrise, sunset, and moon data on a map.' },
       { category: 'Maps, Travel & Exploration', name: 'GeoTastic', url: 'https://www.geotastic.net/', tag: 'Geo Game', desc: 'Free geography guessing game in the browser.' },
 
@@ -416,10 +467,10 @@
       { category: 'Fun, Weird & Interactive', name: 'GeoFS', url: 'https://www.geo-fs.com/', tag: 'Flight Sim', desc: 'Browser-based flight simulator over real-world maps.' },
       { category: 'Fun, Weird & Interactive', name: 'Akinator', url: 'https://en.akinator.com/', tag: 'Guessing Game', desc: 'Think of a character and see if it guesses right.' },
       { category: 'Fun, Weird & Interactive', name: 'Boredbutton', url: 'https://www.boredbutton.com/', tag: 'Random Fun', desc: 'Jump to random mini-games and weird amusements.' },
-      { category: 'Fun, Weird & Interactive', name: 'WindowSizer Mockup', url: 'https://www.window-sizer.com/', tag: 'Utility/Fun', desc: 'Check browser dimensions and responsive view sizes.' },
+      { category: 'Fun, Weird & Interactive', name: 'WhatIsMyViewport', url: 'https://whatismyviewport.com/', tag: 'Utility/Fun', desc: 'Instantly check your browser viewport size for responsive testing.' },
       { category: 'Fun, Weird & Interactive', name: 'Radiooooo', url: 'https://radiooooo.com/', tag: 'Music Discovery', desc: 'Discover music by country and decade.' },
       { category: 'Fun, Weird & Interactive', name: 'Every Noise at Once', url: 'https://everynoise.com/', tag: 'Music Map', desc: 'Explore hundreds of music genres visually.' },
-      { category: 'Fun, Weird & Interactive', name: 'GeoGuess', url: 'https://www.geoguess.com/', tag: 'Geo Game', desc: 'Another geography guessing-style site to try.' },
+      { category: 'Fun, Weird & Interactive', name: 'Worldle', url: 'https://worldle.teuteuf.fr/', tag: 'Geo Game', desc: 'Guess the country from its silhouette in a quick daily geography game.' },
       { category: 'Fun, Weird & Interactive', name: 'Bouncy Balls', url: 'https://bouncyballs.org/', tag: 'Noise Meter', desc: 'A fun sound-level visualizer for your room.' },
       { category: 'Fun, Weird & Interactive', name: 'OneZoom Tree of Life', url: 'https://www.onezoom.org/', tag: 'Nature', desc: 'Zoom around the tree of life and explore species.' },
 
@@ -491,6 +542,21 @@
     const searchInput = document.getElementById('search');
     const categoryFilter = document.getElementById('categoryFilter');
     const visibleCount = document.getElementById('visibleCount');
+    const themeToggle = document.getElementById('themeToggle');
+
+    const normalize = (value) => value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    function applyTheme(theme) {
+      document.body.classList.toggle('dark', theme === 'dark');
+      themeToggle.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+      localStorage.setItem('siteVaultTheme', theme);
+    }
 
     const categories = [...new Set(sites.map(site => site.category))];
 
@@ -507,8 +573,12 @@
       const grouped = {};
       let count = 0;
 
+      const normalizedSearch = normalize(search);
+      const searchTerms = normalizedSearch ? normalizedSearch.split(' ') : [];
+
       sites.forEach(site => {
-        const matchesSearch = !search || [site.name, site.desc, site.tag, site.category, site.url].join(' ').toLowerCase().includes(search);
+        const haystack = normalize([site.name, site.desc, site.tag, site.category, site.url].join(' '));
+        const matchesSearch = !searchTerms.length || searchTerms.every(term => haystack.includes(term));
         const matchesCategory = selectedCategory === 'all' || site.category === selectedCategory;
         if (matchesSearch && matchesCategory) {
           if (!grouped[site.category]) grouped[site.category] = [];
@@ -554,6 +624,11 @@
 
     searchInput.addEventListener('input', render);
     categoryFilter.addEventListener('change', render);
+    themeToggle.addEventListener('click', () => {
+      applyTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
+    });
+
+    applyTheme(localStorage.getItem('siteVaultTheme') || 'light');
     render();
   </script>
 </body>
